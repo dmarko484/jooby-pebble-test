@@ -1,0 +1,55 @@
+buildscript {
+
+  //ext.kotlin_version = '1.0.4'
+
+  repositories {
+    mavenCentral()
+  }
+
+  dependencies {
+    /**
+     * jooby:run 
+     */
+    classpath group: 'org.jooby', name: 'jooby-gradle-plugin', version: '1.0.0.CR8'
+   // classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+  }
+}
+
+
+/* * We are writing a standalone application. */
+apply plugin: 'application'
+//apply plugin: "kotlin"
+apply plugin: 'jooby'
+
+/* * Some classic project configuration. */
+version = 0.1
+mainClassName = "com.mycompany.App"
+sourceCompatibility = 1.8
+
+/* * Dependencies will be downloaded from the Maven repository. */
+repositories {
+  mavenCentral()
+}
+
+/* * A minimal project needs the framework and a webserver. */
+dependencies {
+  compile group: 'org.jooby', name: 'jooby', version: '1.0.0.CR8'
+  compile group: 'org.jooby', name: 'jooby-netty', version: '1.0.0.CR8'
+  compile group: 'org.jooby', name: 'jooby-whoops', version: '1.0.0.CR8'
+  compile group: 'org.jooby', name: 'jooby-pebble', version: '1.0.0.CR8'
+  compile group: 'org.jooby', name: 'jooby-ftl', version: '1.0.0.CR8'
+
+  // https://mvnrepository.com/artifact/com.arangodb/arangodb-java-driver
+  //compile group: 'com.arangodb', name: 'arangodb-java-driver', version: '3.0.3'
+
+
+  //compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+}
+
+/* * We diverge from the default resources structure to adopt the Jooby standard. */
+sourceSets.main.resources {
+  srcDirs = ["conf", "public"]
+}
+sourceSets {
+  //main.java.srcDirs += 'src/main/kotlin'
+}
